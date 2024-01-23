@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "piccash.autorization.url",
+  "type": "java.lang.String",
+  "description": "Serviço de autorização mock"
+}]}
