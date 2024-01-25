@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.piccash.api.dto.ClientDetailsDTO;
 import br.com.piccash.api.dto.ClientRegisterDTO;
 import br.com.piccash.api.dto.ClientUpdateDTO;
+import br.com.piccash.api.dto.DepositDTO;
 import br.com.piccash.api.dto.ShopkeeperDetailsDTO;
 import br.com.piccash.api.dto.ShopkeeperRegisterDTO;
 import br.com.piccash.api.dto.ShopkeeperUpdateDTO;
@@ -29,6 +30,11 @@ public class UserController {
 	
 	@Autowired
 	private UserService usuarioService;
+	
+	@PostMapping("/depositar")
+	public ResponseEntity<String> depositar(@RequestBody @Valid DepositDTO depositDTO){
+		return ResponseEntity.ok(usuarioService.depositar(depositDTO));
+	}
 	
 	@GetMapping("/cliente/{id}")
 	public ResponseEntity<ClientDetailsDTO> findShopkeeperById(@PathVariable Long id) {

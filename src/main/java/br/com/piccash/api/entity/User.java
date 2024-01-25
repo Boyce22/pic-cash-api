@@ -23,33 +23,34 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "pic_user")
 @Data
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "pic_user")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "pic_user_cd_id")
 	private Long id;
 
-	@Column(name = "pic_user_name")
+	@Column(name = "pic_user_tx_name")
 	private String nome;
 
-	@Column(name = "pic_user_last_name")
+	@Column(name = "pic_user_tx_last_name")
 	private String sobreNome;
 
-	@Column(name = "pic_user_email", unique = true, nullable = false)
+	@Column(name = "pic_user_tx_email", unique = true, nullable = false)
 	private String email;
 
-	@Column(name = "pic_user_cpf", unique = true)
+	@Column(name = "pic_user_tx_cpf", unique = true)
 	private String cpf;
 
-	@Column(name = "pic_user_cnpj", unique = true)
+	@Column(name = "pic_user_tx_cnpj", unique = true)
 	private String cnpj;
 
-	@Column(name = "pic_user_balance")
+	@Column(name = "pic_user_nm_balance")
 	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	private BigDecimal saldo;
 
@@ -102,6 +103,16 @@ public class User {
 	@PrePersist
 	public void prePersist() {
 		this.dtCadastro = LocalDateTime.now();
+	}
+
+	public void transfer(User userReceiver, BigDecimal value) {
+		this.saldo = saldo.subtract(value);
+		userReceiver.saldo = saldo.add(value);
+	}
+
+	public User depositar(BigDecimal value) {
+		this.saldo = saldo != null ? saldo.add(value) : value;
+		return this;
 	}
 
 }
