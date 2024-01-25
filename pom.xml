@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>br.com.pic-cash</groupId>
 	<artifactId>api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>2.0.0</version>
 	<name>pic-cash-api</name>
 	<description>Plataforma segura para transferência de dinheiro entre usuários
 		e lojistas.</description>
