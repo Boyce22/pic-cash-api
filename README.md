@@ -56,33 +56,54 @@ Bem-vindo ao repositório do **Pic-Cash**, criado para o **Desafio PicPay**. Est
 
 ### 🗄️ Configurações do Banco de Dados  
 
-1. **Abra o arquivo** `application.properties`.  
-2. Substitua as configurações do banco de dados:  
+1. **Abra o arquivo** `application.properties` na pasta do projeto.  
+2. Substitua as configurações padrão com as informações do seu banco de dados PostgreSQL:  
 
-   ```properties  
-   spring.datasource.url=jdbc:postgresql://localhost:5432/piccash  
-   spring.datasource.username=seu_usuario  
-   spring.datasource.password=sua_senha  
-   spring.datasource.driverClassName=org.postgresql.Driver  
-   spring.jpa.hibernate.ddl-auto=update  
-   spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect  
-   ```  
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/piccash
+spring.datasource.username=seu_usuario  
+spring.datasource.password=sua_senha
+```
+
+3. Verifique o driver do banco de dados:  
+
+```properties
+spring.datasource.driverClassName=org.postgresql.Driver
+```
+
+4. Configure o Hibernate para gerenciar o esquema automaticamente:  
+
+```properties
+spring.jpa.hibernate.ddl-auto=update
+```
+
+5. Defina o **dialeto do Hibernate** para PostgreSQL:  
+
+```properties
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+```
 
 ### 🔒 Configurações de Autorização e Notificação  
 
 1. Adicione as URLs dos serviços no arquivo `application.properties`:  
 
-   ```properties  
-   piccash.autorization.url=https://run.mocky.io/v3/5794d450-d2e2-4412-8131-73d0293ac1cc  
-   piccash.notification.url=https://run.mocky.io/v3/54dc2cf1-3add-45b5-b5a9-6bf7e7f1f4a6  
-   ```  
-
-### ▶️ Inicialização  
-
-- Configure o banco de dados e as credenciais em `application.properties`.  
-- Inicie o aplicativo localmente.  
+```properties  
+piccash.autorization.url=https://run.mocky.io/v3/5794d450-d2e2-4412-8131-73d0293ac1cc  
+piccash.notification.url=https://run.mocky.io/v3/54dc2cf1-3add-45b5-b5a9-6bf7e7f1f4a6  
+```  
 
 ---
+
+### ▶️ Inicializando o Sistema  
+
+1. Certifique-se de que o PostgreSQL está rodando no ambiente local.  
+2. Compile e execute a aplicação utilizando sua IDE ou os comandos do Maven:  
+
+```shell script
+mvn spring-boot:run
+```
+
+3. Utilize ferramentas como **Postman** ou **Insomnia** para testar os endpoints disponibilizados.
 
 ## 📝 Notas Adicionais  
 
